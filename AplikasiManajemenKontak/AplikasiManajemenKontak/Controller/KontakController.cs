@@ -139,14 +139,13 @@ namespace AplikasiManajemenKontak.Controller
 
         }
 
-        private static Boolean RedudansiCheck(String input, String id = "")
+        private static Boolean RedudansiCheck(String input)
         {
             Boolean redudansicheck = false;
             String keterangan = "";
             foreach (var user in daftarKontak)
             {
-                if (user.Id != id)
-                {
+              
                     if (user.Name == input)
                     {
                         keterangan = "Nama";
@@ -162,7 +161,7 @@ namespace AplikasiManajemenKontak.Controller
                         keterangan = "Email";
                         redudansicheck = true;
                     }
-                }
+                
 
 
             }
