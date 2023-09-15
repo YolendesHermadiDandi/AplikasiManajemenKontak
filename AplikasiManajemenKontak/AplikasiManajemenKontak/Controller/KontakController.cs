@@ -11,6 +11,7 @@ namespace AplikasiManajemenKontak.Controller
     {
 
         private static List<Kontak> daftarKontak = new List<Kontak> { };
+        private static Stack<Kontak> historyKontak = new Stack<Kontak>(); 
         private static int id = 0;
 
 
@@ -28,6 +29,15 @@ namespace AplikasiManajemenKontak.Controller
                 Console.WriteLine(item.toString());
             }
         }
+
+        public static void ShowHistoryAllKontak()
+        {
+            foreach (var item in historyKontak)
+            {
+                Console.WriteLine(item.toString());
+            }
+        }
+
         public static void CreateKontak()
         {
 
@@ -58,13 +68,32 @@ namespace AplikasiManajemenKontak.Controller
             Console.ReadLine();
         }
 
+<<<<<<< Updated upstream
 
+=======
+       
+        public static void deleteKontak()
+        {
+            string input = Console.ReadLine();
+            foreach (var item in daftarKontak)
+            {
+                if(item.Id == input)
+                {
+                    historyKontak.Push(item);
+                }
+            }
+            daftarKontak.RemoveAt(int.Parse(input));
+        }
+        
+>>>>>>> Stashed changes
         /*
          * Method dibawah digunakan untuk melakukan validasi terhadap inputan
          * dari user
          */
         private static Kontak InputValidation()
         {
+            Console.Clear();
+            Console.WriteLine("=== Create Contact Person ===");
             string name = InputCheck("Name : ");
             string phoneNumber = InputCheck("Phone Number : ");
             string emailAddress = InputCheck("Email : ");

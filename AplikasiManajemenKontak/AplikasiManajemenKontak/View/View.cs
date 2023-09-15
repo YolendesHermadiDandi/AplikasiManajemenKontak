@@ -18,7 +18,8 @@ namespace AplikasiManajemenKontak.View
                 Console.WriteLine("1. Create Contact");
                 Console.WriteLine("2. Edit Contact");
                 Console.WriteLine("3. Show Contact");
-                Console.WriteLine("4. Exit");
+                Console.WriteLine("4. Show History Contact");
+                Console.WriteLine("5. Exit");
 
                 //Membuat selectin pilihan menu
                 Console.Write("Select : ");
@@ -46,6 +47,11 @@ namespace AplikasiManajemenKontak.View
                         vShowContact();
                         break;
                     case "4":
+                        Console.Clear();
+                        vHistoryContact();
+                        program = false;
+                        break;
+                    case "5":
                         Console.Clear();
                         program = false;
                         break;
@@ -90,9 +96,8 @@ namespace AplikasiManajemenKontak.View
                         break;
                     case "2":
                         Console.Write("Select ID Contact    : ");
-                        string idContact = Console.ReadLine();
                         //VVV Masukan code untuk menghapus contact VVV
-
+                        KontakController.deleteKontak();
                         Console.Clear();
                         break;
                     case "3":
@@ -164,7 +169,7 @@ namespace AplikasiManajemenKontak.View
             }
         }
 
-        public void vHistoryContact()
+        public static void vHistoryContact()
         {
             bool program = true;
             while (program)
@@ -172,14 +177,7 @@ namespace AplikasiManajemenKontak.View
                 Console.WriteLine("=== Show History Contact ===");
 
                 //Untuk Menampilkan seluruh isi kontak
-                /*foreach (UserData userData in UserDatas)
-                {
-                    Console.WriteLine("========================");
-                    Console.WriteLine("Name         : " + userData.id);
-                    Console.WriteLine("Phone Number : " + userData.firstName + " " + userData.lastName);
-                    Console.WriteLine("Email        : " + userData.username);
-                    Console.WriteLine("========================");
-                }*/
+                KontakController.ShowHistoryAllKontak();
                 Console.WriteLine("1. Search Contact");
                 Console.WriteLine("2. Back");
                 //Membuat selectin pilihan pada menu show
