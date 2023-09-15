@@ -20,6 +20,14 @@ namespace AplikasiManajemenKontak.Controller
          * daftar kontak
          * 
          */
+
+        public static void ShowAllKontak()
+        {
+            foreach (var item in daftarKontak)
+            {
+                Console.WriteLine(item.toString());
+            }
+        }
         public static void CreateKontak()
         {
 
@@ -30,7 +38,7 @@ namespace AplikasiManajemenKontak.Controller
 
         }
 
-
+       
 
         /*
          * Method dibawah digunakan untuk melakukan validasi terhadap inputan

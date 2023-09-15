@@ -62,9 +62,12 @@ namespace AplikasiManajemenKontak.View
         public static void vEditContact()
         {
             bool program = true;
+
             while (program)
+            
             {
                 Console.Clear();
+                KontakController.ShowAllKontak();
                 Console.WriteLine("=== Edit Contact ===");
                 Console.WriteLine("1. Update Contact");
                 Console.WriteLine("2. Delete Contact");
@@ -110,6 +113,7 @@ namespace AplikasiManajemenKontak.View
             {
                 Console.Clear();
                 Console.WriteLine("=== Show Contact ===");
+                KontakController.ShowAllKontak();
 
                 //Untuk Menampilkan seluruh isi kontak
                 /*foreach (UserData userData in UserDatas)
@@ -121,7 +125,7 @@ namespace AplikasiManajemenKontak.View
                     Console.WriteLine("========================");
                 }*/
 
-                Console.WriteLine("1. Search Contact");
+                Console.WriteLine("\n1. Search Contact");
                 Console.WriteLine("2. Back");
                 //Membuat selectin pilihan pada menu show
                 Console.Write("Select : ");
