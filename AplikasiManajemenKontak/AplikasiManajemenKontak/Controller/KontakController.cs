@@ -12,6 +12,14 @@ namespace AplikasiManajemenKontak.Controller
 
         private static List<Kontak> daftarKontak = new List<Kontak> { };
         private static int id = 0;
+
+
+        /*
+         * 
+         * Method dibawah digunakan untuk membuat kontak dan menambahkannya kedalam list
+         * daftar kontak
+         * 
+         */
         public static void CreateKontak()
         {
 
@@ -23,6 +31,11 @@ namespace AplikasiManajemenKontak.Controller
         }
 
 
+
+        /*
+         * Method dibawah digunakan untuk melakukan validasi terhadap inputan
+         * dari user
+         */
         private static Kontak InputValidation()
         {
             string name = InputCheck("Name : ");
@@ -40,6 +53,10 @@ namespace AplikasiManajemenKontak.Controller
 
         }
 
+        /*
+         * Method dibawah digunakan untuk validasi berdasarkan field yang diisi:
+         * Name, Phone Number, dan Address
+         */
         private static String InputCheck(String inputType)
         {
             Boolean checkvalidation = true;
@@ -74,10 +91,9 @@ namespace AplikasiManajemenKontak.Controller
                 {
                     Console.Write(inputType);
                     input = Console.ReadLine();
-                    if (input.All(char.IsDigit))
-                    {
+                   
                         if (input.Length < 8 ||
-                            input.Length > 15)
+                            input.Length > 15 || input.Any(char.IsLetter))
                         {
                             Console.WriteLine("INPUTAN TIDAK VALID !!!");
                         }
@@ -85,11 +101,8 @@ namespace AplikasiManajemenKontak.Controller
                         {
                             checkvalidation = false;
                         }
-                    }
-                    else
-                    {
-                        Console.WriteLine("INPUTAN TIDAK VALID !!!");
-                    }
+                    
+              
                 }
                 else if (inputType.Equals("Email : "))
                 {
@@ -98,7 +111,7 @@ namespace AplikasiManajemenKontak.Controller
 
                     if (!input.Contains("@gmail.com"))
                     {
-                        Console.WriteLine("EMAIL TIDAK VALID!!!");
+                        Console.WriteLine("EMAIL TIDAK VALID!!! \n Gunakan @gmail.com");
                     }
                     else
                     {

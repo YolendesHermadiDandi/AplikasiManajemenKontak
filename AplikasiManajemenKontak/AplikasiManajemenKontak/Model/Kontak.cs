@@ -4,6 +4,9 @@ namespace AplikasiManajemenKontak.Model
 {
     class Kontak
     {
+
+        // constructor
+        
         public Kontak() { }
         public Kontak(String id, string name, string phoneNumber, string emailAddress) 
         {
@@ -15,12 +18,16 @@ namespace AplikasiManajemenKontak.Model
 
         }
 
+        //setter getter
+
         public String Id { get; set; }
         public String Name { get; set; }
         public String PhoneNumber { get; set; }
         public String EmailAddress { get; set; }
 
 
+
+        // toString buat show all data
         public string toString()
         {
             return "Nama : "+Name+
