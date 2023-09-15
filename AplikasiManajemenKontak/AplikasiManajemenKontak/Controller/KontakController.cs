@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using AplikasiManajemenKontak.Model;
 
 namespace AplikasiManajemenKontak.Controller
@@ -11,6 +12,7 @@ namespace AplikasiManajemenKontak.Controller
     {
 
         private static List<Kontak> daftarKontak = new List<Kontak> { };
+        private static Stack<Kontak> historyKontak = new Stack<Kontak>(); 
         private static int id = 0;
 
 
@@ -28,6 +30,15 @@ namespace AplikasiManajemenKontak.Controller
                 Console.WriteLine(item.toString());
             }
         }
+        /*Method untuk menampilkan history kontak yang sudah di delete*/
+        public static void ShowHistoryAllKontak()
+        {
+            foreach (var item in historyKontak)
+            {
+                Console.WriteLine(item.toString());
+            }
+        }
+
         public static void CreateKontak()
         {
 
@@ -71,15 +82,62 @@ namespace AplikasiManajemenKontak.Controller
                 Console.WriteLine("DATA KONTAK KOSONG");
             }
             Console.ReadKey();
+        }       
+        public static void deleteKontak()
+        {
+            try
+            {
+                string input = Console.ReadLine();
+                foreach (var item in daftarKontak)
+                {
+                    if (item.Id == input)
+                    {
+                        daftarKontak.Remove(item);
+                        historyKontak.Push(item);
+                    }
+                }
+            }
+            catch (Exception e) 
+            {
+                Console.WriteLine($"{e.Message}");
+            }
+            
+           
         }
+        
+        public static void searchHistoryContact()
+        {
+            string search = Console.ReadLine();
+            int count = 0;
+            foreach (var item in historyKontak)
+            {
+                if (item.Name.Contains(search) || item.PhoneNumber.Contains(search) || item.EmailAddress.Contains(search))
+                {
+                    Console.WriteLine("========================");
+                    Console.WriteLine("ID               : " + item.Id);
+                    Console.WriteLine("Name             : " + item.Name);
+                    Console.WriteLine("Phone Number     : " + item.PhoneNumber);
+                    Console.WriteLine("Email Address    : " + item.EmailAddress);
+                    Console.WriteLine("========================");
+                    count++;
+                }
 
 
+            }
+            if (count < 1)
+            {
+                Console.WriteLine("Maaf User Yang Anda Cari tidak ditemukan");
+            }
+            Console.ReadKey();
+        }
         /*
          * Method dibawah digunakan untuk melakukan validasi terhadap inputan
          * dari user
          */
         private static Kontak InputValidation()
         {
+            Console.Clear();
+            Console.WriteLine("=== Create Contact Person ===");
             string name = InputCheck("Name : ");
             string phoneNumber = InputCheck("Phone Number : ");
             string emailAddress = InputCheck("Email : ");
