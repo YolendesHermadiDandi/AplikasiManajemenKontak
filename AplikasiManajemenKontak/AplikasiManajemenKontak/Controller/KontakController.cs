@@ -66,26 +66,29 @@ namespace AplikasiManajemenKontak.Controller
 
             }
             Console.ReadLine();
-        }
-
-<<<<<<< Updated upstream
-
-=======
-       
+        }       
         public static void deleteKontak()
         {
-            string input = Console.ReadLine();
-            foreach (var item in daftarKontak)
+            try
             {
-                if(item.Id == input)
+                string input = Console.ReadLine();
+                foreach (var item in daftarKontak)
                 {
-                    historyKontak.Push(item);
+                    if (item.Id == input)
+                    {
+                        historyKontak.Push(item);
+                    }
                 }
+                daftarKontak.RemoveAt(int.Parse(input) - 1);
             }
-            daftarKontak.RemoveAt(int.Parse(input));
+            catch
+            {
+                Console.WriteLine("Sorry Your id in invalid please enter right id");
+                Console.ReadKey();
+            }
+            
         }
         
->>>>>>> Stashed changes
         /*
          * Method dibawah digunakan untuk melakukan validasi terhadap inputan
          * dari user

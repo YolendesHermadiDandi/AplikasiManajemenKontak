@@ -49,7 +49,6 @@ namespace AplikasiManajemenKontak.View
                     case "4":
                         Console.Clear();
                         vHistoryContact();
-                        program = false;
                         break;
                     case "5":
                         Console.Clear();
