@@ -6,11 +6,11 @@ namespace AplikasiManajemenKontak.Model
     {
 
         // constructor
-        
+
         public Kontak() { }
-        public Kontak(String id, string name, string phoneNumber, string emailAddress) 
+        public Kontak(String id, string name, string phoneNumber, string emailAddress)
         {
-        
+
             Id = id;
             Name = name;
             PhoneNumber = phoneNumber;
@@ -30,9 +30,10 @@ namespace AplikasiManajemenKontak.Model
         // toString buat show all data
         public string toString()
         {
-            return "Nama : "+Name+
-                    "\nPhone Number : " +PhoneNumber+
-                    "\nEmail Address : "+EmailAddress;
+            return "Id  :" + Id + "" +
+                    "\nNama : " + Name +
+                    "\nPhone Number : " + PhoneNumber +
+                    "\nEmail Address : " + EmailAddress;
         }
 
     }

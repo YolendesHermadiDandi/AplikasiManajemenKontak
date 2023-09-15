@@ -78,12 +78,13 @@ namespace AplikasiManajemenKontak.View
                 switch (select)
                 {
                     case "1":
-                        Console.Write("Nama             : ");
-                        string name = Console.ReadLine();
-                        Console.Write("Number Phone     : ");
-                        string phoneNumber = Console.ReadLine();
-                        Console.Write("Email Address    : ");
-                        string email = Console.ReadLine();
+                        KontakController.UpdateKontak();
+                        //Console.Write("Nama             : ");
+                        //string name = Console.ReadLine();
+                        //Console.Write("Number Phone     : ");
+                        //string phoneNumber = Console.ReadLine();
+                        //Console.Write("Email Address    : ");
+                        //string email = Console.ReadLine();
                         //VVV masukan code untuk memasukan data kedalam list yang telah di buat VVV
 
                         break;

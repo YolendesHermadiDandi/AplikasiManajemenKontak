@@ -37,8 +37,27 @@ namespace AplikasiManajemenKontak.Controller
             String input = Console.ReadLine();
 
         }
+        public static void UpdateKontak()
+        {
 
-       
+            Console.WriteLine("============UPDATE KONTAK===========");
+            Console.Write("Masukan Id yang ingin diupdate : ");
+            String id = Console.ReadLine();
+            foreach (var kontak in daftarKontak)
+            {
+                if (kontak.Id == id)
+                {
+                    Kontak user = InputValidation();
+                    kontak.Name = user.Name;
+                    kontak.PhoneNumber = user.PhoneNumber;
+                    kontak.EmailAddress = user.EmailAddress;
+
+                }
+
+            }
+            Console.ReadLine();
+        }
+
 
         /*
          * Method dibawah digunakan untuk melakukan validasi terhadap inputan
@@ -76,41 +95,25 @@ namespace AplikasiManajemenKontak.Controller
                 {
                     Console.Write(inputType);
                     input = Console.ReadLine();
-                    Boolean nameCheck = true;
-                    foreach (var name in daftarKontak)
-                    {
-                        if (name.Name == input)
-                        {
-                            nameCheck = false;
-                        }
-
-                    }
-                    if (nameCheck == false)
-                    {
-                        Console.WriteLine("NAMA TIDAK BOLEH SAMA!!!");
-                    }
-                    else
-                    {
-                        checkvalidation = false;
-                    }
-
+                    checkvalidation = RedudansiCheck(input);
                 }
                 else if (inputType.Equals("Phone Number : "))
                 {
                     Console.Write(inputType);
                     input = Console.ReadLine();
-                   
-                        if (input.Length < 8 ||
-                            input.Length > 15 || input.Any(char.IsLetter))
-                        {
-                            Console.WriteLine("INPUTAN TIDAK VALID !!!");
-                        }
-                        else
-                        {
-                            checkvalidation = false;
-                        }
-                    
-              
+
+
+                    if (input.Length < 8 ||
+                        input.Length > 15 || input.Any(char.IsLetter))
+                    {
+                        Console.WriteLine("INPUTAN TIDAK VALID !!!");
+                    }
+                    else
+                    {
+                        checkvalidation = RedudansiCheck(input);
+                    }
+
+
                 }
                 else if (inputType.Equals("Email : "))
                 {
@@ -123,7 +126,8 @@ namespace AplikasiManajemenKontak.Controller
                     }
                     else
                     {
-                        checkvalidation = false;
+                        checkvalidation = RedudansiCheck(input);
+                                            
                     }
                 }
 
@@ -132,6 +136,42 @@ namespace AplikasiManajemenKontak.Controller
 
 
             return input;
+
+        }
+
+        private static Boolean RedudansiCheck(String input, String id = "")
+        {
+            Boolean redudansicheck = false;
+            String keterangan = "";
+            foreach (var user in daftarKontak)
+            {
+                if (user.Id != id)
+                {
+                    if (user.Name == input)
+                    {
+                        keterangan = "Nama";
+                        redudansicheck = true;
+                    }
+                    else if (user.PhoneNumber == input)
+                    {
+                        keterangan = "Phone Number";
+                        redudansicheck = true;
+                    }
+                    else if (user.EmailAddress == input)
+                    {
+                        keterangan = "Email";
+                        redudansicheck = true;
+                    }
+                }
+
+
+            }
+            if (redudansicheck == true)
+            {
+                Console.WriteLine(keterangan + " SUDAH DIGUNAKAN!!!");
+                return true;
+            }
+            return false;
 
         }
     }
