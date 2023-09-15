@@ -101,8 +101,6 @@ namespace AplikasiManajemenKontak.Controller
             {
                 Console.WriteLine($"{e.Message}");
             }
-            
-           
         }
         
         public static void searchHistoryContact()
