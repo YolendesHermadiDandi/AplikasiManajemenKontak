@@ -43,19 +43,34 @@ namespace AplikasiManajemenKontak.Controller
             Console.WriteLine("============UPDATE KONTAK===========");
             Console.Write("Masukan Id yang ingin diupdate : ");
             String id = Console.ReadLine();
-            foreach (var kontak in daftarKontak)
+
+            if (daftarKontak.Count != 0)
             {
-                if (kontak.Id == id)
+
+                foreach (var kontak in daftarKontak)
                 {
-                    Kontak user = InputValidation();
-                    kontak.Name = user.Name;
-                    kontak.PhoneNumber = user.PhoneNumber;
-                    kontak.EmailAddress = user.EmailAddress;
+
+                    if (kontak.Id == id)
+                    {
+                        Kontak user = InputValidation();
+                        kontak.Name = user.Name;
+                        kontak.PhoneNumber = user.PhoneNumber;
+                        kontak.EmailAddress = user.EmailAddress;
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("ID TIDAK DITEMUKAN");
+                    }
+
 
                 }
-
             }
-            Console.ReadLine();
+            else
+            {
+                Console.WriteLine("DATA KONTAK KOSONG");
+            }
+            Console.ReadKey();
         }
 
 
@@ -93,9 +108,19 @@ namespace AplikasiManajemenKontak.Controller
             {
                 if (inputType.Equals("Name : "))
                 {
+
                     Console.Write(inputType);
                     input = Console.ReadLine();
-                    checkvalidation = RedudansiCheck(input);
+                    if (string.IsNullOrEmpty(input) || input.Any(Char.IsDigit) || input.Length < 2)
+                    {
+                        Console.WriteLine("INPUTAN TIDAK FALID");
+
+                    }
+                    else
+                    {
+                        checkvalidation = RedudansiCheck(input);
+                    }
+
                 }
                 else if (inputType.Equals("Phone Number : "))
                 {
@@ -106,7 +131,7 @@ namespace AplikasiManajemenKontak.Controller
                     if (input.Length < 8 ||
                         input.Length > 15 || input.Any(char.IsLetter))
                     {
-                        Console.WriteLine("INPUTAN TIDAK VALID !!!");
+                        Console.WriteLine("Phone Number tidak boleh kurang dari 8 atau lebih dari 15 atau huruf");
                     }
                     else
                     {
@@ -127,7 +152,7 @@ namespace AplikasiManajemenKontak.Controller
                     else
                     {
                         checkvalidation = RedudansiCheck(input);
-                                            
+
                     }
                 }
 
@@ -145,23 +170,23 @@ namespace AplikasiManajemenKontak.Controller
             String keterangan = "";
             foreach (var user in daftarKontak)
             {
-              
-                    if (user.Name == input)
-                    {
-                        keterangan = "Nama";
-                        redudansicheck = true;
-                    }
-                    else if (user.PhoneNumber == input)
-                    {
-                        keterangan = "Phone Number";
-                        redudansicheck = true;
-                    }
-                    else if (user.EmailAddress == input)
-                    {
-                        keterangan = "Email";
-                        redudansicheck = true;
-                    }
-                
+
+                if (user.Name == input)
+                {
+                    keterangan = "Nama";
+                    redudansicheck = true;
+                }
+                else if (user.PhoneNumber == input)
+                {
+                    keterangan = "Phone Number";
+                    redudansicheck = true;
+                }
+                else if (user.EmailAddress == input)
+                {
+                    keterangan = "Email";
+                    redudansicheck = true;
+                }
+
 
 
             }
