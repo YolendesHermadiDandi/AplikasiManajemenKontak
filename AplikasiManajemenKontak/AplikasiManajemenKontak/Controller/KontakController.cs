@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using AplikasiManajemenKontak.Model;
 
 namespace AplikasiManajemenKontak.Controller
@@ -29,7 +30,7 @@ namespace AplikasiManajemenKontak.Controller
                 Console.WriteLine(item.toString());
             }
         }
-
+        /*Method untuk menampilkan history kontak yang sudah di delete*/
         public static void ShowHistoryAllKontak()
         {
             foreach (var item in historyKontak)
@@ -76,19 +77,44 @@ namespace AplikasiManajemenKontak.Controller
                 {
                     if (item.Id == input)
                     {
+                        daftarKontak.Remove(item);
                         historyKontak.Push(item);
                     }
                 }
-                daftarKontak.RemoveAt(int.Parse(input) - 1);
             }
-            catch
+            catch (Exception e) 
             {
-                Console.WriteLine("Sorry Your id in invalid please enter right id");
-                Console.ReadKey();
+                Console.WriteLine($"{e.Message}");
             }
+            
             
         }
         
+        public static void searchHistoryContact()
+        {
+            string search = Console.ReadLine();
+            int count = 0;
+            foreach (var item in historyKontak)
+            {
+                if (item.Name.Contains(search) || item.PhoneNumber.Contains(search) || item.EmailAddress.Contains(search))
+                {
+                    Console.WriteLine("========================");
+                    Console.WriteLine("ID               : " + item.Id);
+                    Console.WriteLine("Name             : " + item.Name);
+                    Console.WriteLine("Phone Number     : " + item.PhoneNumber);
+                    Console.WriteLine("Email Address    : " + item.EmailAddress);
+                    Console.WriteLine("========================");
+                    count++;
+                }
+
+
+            }
+            if (count < 1)
+            {
+                Console.WriteLine("Maaf User Yang Anda Cari tidak ditemukan");
+            }
+            Console.ReadKey();
+        }
         /*
          * Method dibawah digunakan untuk melakukan validasi terhadap inputan
          * dari user

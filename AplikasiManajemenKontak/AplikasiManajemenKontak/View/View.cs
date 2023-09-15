@@ -186,22 +186,8 @@ namespace AplikasiManajemenKontak.View
                 {
                     case "1":
                         Console.Write("Please write Name / Phone number / Email Address :");
-                        string search = Console.ReadLine();
-                        // VVV masukan code untuk mencari contact VVV
-                        /*foreach (var item in UserDatas)
-                        {
-                            if (item.firstName.Contains(name) || item.lastName.Contains(name))
-                            {
-                                Console.WriteLine("========================");
-                                Console.WriteLine("ID       : " + item.id);
-                                Console.WriteLine("Name     : " + item.firstName + " " + item.lastName);
-                                Console.WriteLine("Username : " + item.username);
-                                Console.WriteLine("Password : " + item.password);
-                                Console.WriteLine("========================");
-                                count++;
-                            }
-                        }*/
-
+                        KontakController.searchHistoryContact();
+                        Console.Clear();
                         break;
                     case "2":
                         Console.Clear();
