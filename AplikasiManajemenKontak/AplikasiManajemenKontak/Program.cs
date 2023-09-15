@@ -1,4 +1,4 @@
-﻿namespace AplikasiManajemenKontak;
+namespace AplikasiManajemenKontak;
 
 class Program
 {
